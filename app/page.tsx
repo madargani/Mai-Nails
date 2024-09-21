@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 
@@ -10,7 +11,7 @@ export default function Home() {
         bg-[url('/images/nails.jpg')] bg-center bg-cover
         flex-grow"
       >
-        <a
+        <Link
           className="
           block p-6 rounded-full
           mx-auto w-fit mt-[50vh]
@@ -19,7 +20,7 @@ export default function Home() {
           href="/book"
         >
           Get Stylish Nails
-        </a>
+        </Link>
       </section>
       <Footer />
     </body>

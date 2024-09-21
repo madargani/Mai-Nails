@@ -7,7 +7,7 @@ export default function Header() {
         absolute top-0 left-0 right-0
         flex justify-center items-center
         px-8 h-48
-        bg-green-950 bg-opacity-90"
+        bg-green-950 bg-opacity-85"
     >
       <Image
         src="/images/mai_nails_logo.png"
