@@ -18,14 +18,20 @@ export default function DateTime({
   const [appts, setAppts] = useState<string[]>([]);
   useEffect(updateAppts, []);
 
+  const [loading, setLoading] = useState(false);
+
   function handleDateChange() {
     updateAppts();
     setValue("Time", "");
   }
 
   function updateAppts() {
-    getAppts(getValues("Date")).then((appts) => {
+    setLoading(true);
+    const dateInput = document.getElementById("Date") as HTMLInputElement;
+    if (!dateInput) return;
+    getAppts(dateInput.value).then((appts) => {
       setAppts(appts);
+      setLoading(false);
     });
   }
 
@@ -35,6 +41,7 @@ export default function DateTime({
         When is a good time for us to meet?
       </p>
       <input
+        id="Date"
         className="
         w-full border-2 border-neutral-300 rounded-full
         text-2xl text-neutral-500 px-4 py-1"
@@ -42,9 +49,29 @@ export default function DateTime({
         {...register("Date")}
         onChange={handleDateChange}
       />
-      {appts.map((appt) => (
-        <RadioButton key={appt} register={register} value={appt} name="Time" />
-      ))}
+      <div className="flex flex-col gap-4 my-4">
+        {loading ? (
+          <p className="text-center text-xl text-neutral-400 my-4">
+            Loading...
+          </p>
+        ) : (
+          <>
+            {appts.map((appt) => (
+              <RadioButton
+                key={appt}
+                register={register}
+                value={appt}
+                name="Time"
+              />
+            ))}
+            {appts.length === 0 && (
+              <p className="text-center text-xl text-neutral-400 my-4">
+                No appointments available. Try a different date.
+              </p>
+            )}
+          </>
+        )}
+      </div>
     </div>
   );
 }
