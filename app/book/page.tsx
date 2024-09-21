@@ -6,13 +6,14 @@ import CustomerInfo from "./steps/customerInfo";
 import useMultiStepForm from "./useMultiStepForm";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
+import DateTime from "./steps/dateTime";
 
 export default function Book() {
-  const { register, control } = useForm();
+  const { register, getValues, setValue, control } = useForm();
 
   const { totalSteps, step, page, nextStep, prevStep } = useMultiStepForm([
-    <CustomerInfo register={register} />,
-    <div>Step 2</div>,
+    <CustomerInfo register={register} getValues={getValues} />,
+    <DateTime register={register} getValues={getValues} setValue={setValue} />,
     <div>Step 3</div>,
   ]);
 
@@ -23,9 +24,10 @@ export default function Book() {
       h-screen flex items-center justify-center"
     >
       <form className="w-80 h-fit bg-white rounded-[3rem] p-8">
-        <button type="button" onClick={prevStep}>
-          <LeftArrow />
-        </button>
+        <BackButton
+          prevStep={prevStep}
+          visibility={step === 0 ? "invisible" : ""}
+        />
         <ProgressBar totalSteps={totalSteps} currentStep={step + 1} />
         {page}
         <button
@@ -44,8 +46,20 @@ export default function Book() {
   );
 }
 
-function LeftArrow() {
+function BackButton({
+  prevStep,
+  visibility,
+}: {
+  prevStep: () => void;
+  visibility: string;
+}) {
   return (
-    <div className="border-r-[24px] border-y-[16px] border-transparent border-r-neutral-300"></div>
+    <button
+      onClick={prevStep}
+      type="button"
+      className={`
+      ${visibility}
+      border-r-[24px] border-y-[16px] border-transparent border-r-neutral-300`}
+    ></button>
   );
 }
