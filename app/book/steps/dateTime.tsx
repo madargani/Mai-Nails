@@ -1,18 +1,12 @@
-import {
-  UseFormRegister,
-  UseFormGetValues,
-  UseFormSetValue,
-} from "react-hook-form";
+import { UseFormRegister, UseFormSetValue } from "react-hook-form";
 import { useState, useEffect } from "react";
 import { getAppts } from "../actions";
 
 export default function DateTime({
   register,
-  getValues,
   setValue,
 }: {
   register: UseFormRegister<any>;
-  getValues: UseFormGetValues<any>;
   setValue: UseFormSetValue<any>;
 }) {
   const [appts, setAppts] = useState<string[]>([]);
@@ -97,10 +91,10 @@ function RadioButton({
       />
       <label
         className="
-        peer-checked:bg-green-300 peer-checked:text-white
-        border-2 border-green-300
+        peer-checked:bg-green-400 peer-checked:text-white
+        border-2 border-green-400
         block w-40 rounded-full p-1 
-        text-center text-2xl text-green-300 font-bold"
+        text-center text-2xl text-green-400 font-bold"
         htmlFor={value}
       >
         {value}

@@ -7,14 +7,26 @@ import useMultiStepForm from "./useMultiStepForm";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import DateTime from "./steps/dateTime";
+import OptionStep from "./steps/optionStep";
 
 export default function Book() {
-  const { register, getValues, setValue, control } = useForm();
+  const { register, setValue, control } = useForm();
 
   const { totalSteps, step, page, nextStep, prevStep } = useMultiStepForm([
-    <CustomerInfo register={register} getValues={getValues} />,
-    <DateTime register={register} getValues={getValues} setValue={setValue} />,
-    <div>Step 3</div>,
+    <CustomerInfo register={register} />,
+    <DateTime register={register} setValue={setValue} />,
+    <OptionStep
+      register={register}
+      prompt="Do you need a nail removal?"
+      options={["Yes", "No"]}
+      name="Service"
+    />,
+    <OptionStep
+      register={register}
+      prompt="What shape nails would you like?"
+      options={["Almond", "Oval", "Rounded", "Square", "Stiletto"]}
+      name="Shape"
+    />,
   ]);
 
   return (

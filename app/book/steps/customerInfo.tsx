@@ -1,11 +1,9 @@
-import { UseFormRegister, UseFormGetValues } from "react-hook-form";
+import { UseFormRegister } from "react-hook-form";
 
 export default function CustomerInfo({
   register,
-  getValues,
 }: {
   register: UseFormRegister<any>;
-  getValues: UseFormGetValues<any>;
 }) {
   return (
     <div className="flex flex-col gap-4 my-8">

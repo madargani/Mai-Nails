@@ -15,8 +15,11 @@ function getSheets() {
 
 export async function getAppts(date: string): Promise<string[]> {
   if (date === "") return [];
+  if (new Date(date) < new Date()) return [];
+
   const DayOfWeek = new Date(date).getDay() + 1;
   const sheets = getSheets();
+
   const hoursResponse = (
     await sheets.spreadsheets.values.get({
       spreadsheetId: process.env.SHEET_ID,
