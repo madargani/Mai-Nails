@@ -54,7 +54,7 @@ export async function addAppt(
 ): Promise<void> {
   const sheets = getSheets();
 
-  const res = sheets.spreadsheets.values.append({
+  sheets.spreadsheets.values.append({
     spreadsheetId: process.env.SHEET_ID,
     range: "Appointments!B2:C",
     valueInputOption: "USER_ENTERED",
