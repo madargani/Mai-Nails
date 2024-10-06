@@ -14,24 +14,26 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 export default function Book() {
-  const { register, setValue, getValues, control } = useForm();
+  const { register, setValue, getValues } = useForm();
 
   const { totalSteps, step, page, nextStep, prevStep } = useMultiStepForm([
-    <CustomerInfo register={register} />,
-    <DateTime register={register} setValue={setValue} />,
+    <CustomerInfo register={register} key={0} />,
+    <DateTime register={register} setValue={setValue} key={1} />,
     <OptionStep
       register={register}
       prompt="Do you need a nail removal?"
       options={["Yes", "No"]}
       name="Service"
+      key={2}
     />,
     <OptionStep
       register={register}
       prompt="What shape nails would you like?"
       options={["Almond", "Oval", "Rounded", "Square", "Stiletto"]}
       name="Shape"
+      key={3}
     />,
-    <ThankYou getValues={getValues} />
+    <ThankYou getValues={getValues} key={4} />
   ]);
 
   const router = useRouter();
