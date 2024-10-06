@@ -28,10 +28,10 @@ export default function Book() {
       options={["Almond", "Oval", "Rounded", "Square", "Stiletto"]}
       name="Shape"
     />,
-    <ThankYou getValues={getValues}/>
+    <ThankYou getValues={getValues} />
   ]);
 
-  function handleSubmit(e) {
+  function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     nextStep();
   }
@@ -42,7 +42,7 @@ export default function Book() {
       bg-gradient-to-t from-green-400 to-pink-400
       h-screen flex items-center justify-center"
     >
-      <form 
+      <form
         className="w-80 h-fit bg-white rounded-[3rem] p-8"
         onSubmit={handleSubmit}
       >
@@ -52,8 +52,8 @@ export default function Book() {
         />
         <ProgressBar
           totalSteps={totalSteps - 1}
-          currentStep={step + 1} 
-          visibility={step === totalSteps - 1 ? "hidden" : ""} 
+          currentStep={step + 1}
+          visibility={step === totalSteps - 1 ? "hidden" : ""}
         />
         {page}
         <button
