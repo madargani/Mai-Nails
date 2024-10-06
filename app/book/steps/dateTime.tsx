@@ -44,6 +44,12 @@ export default function DateTime({
         {...register("Date")}
         onChange={handleDateChange}
       />
+      <input
+        required
+        className="hidden"
+        type="radio"
+        name="Time"
+      />
       <div className="flex flex-col gap-4 my-4">
         {loading ? (
           <p className="text-center text-xl text-neutral-400 my-4">

@@ -2,13 +2,14 @@
 
 import ProgressBar from "./components/progressBar";
 import CustomerInfo from "./steps/customerInfo";
+import DateTime from "./steps/dateTime";
+import OptionStep from "./steps/optionStep";
+import ThankYou from "./steps/thankYou";
 
 import useMultiStepForm from "./useMultiStepForm";
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
-import DateTime from "./steps/dateTime";
-import OptionStep from "./steps/optionStep";
-import ThankYou from "./steps/thankYou";
+import { useRouter } from "next/navigation";
 
 export default function Book() {
   const { register, setValue, getValues, control } = useForm();
@@ -31,9 +32,12 @@ export default function Book() {
     <ThankYou getValues={getValues} />
   ]);
 
+  const router = useRouter();
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     nextStep();
+    if (step === totalSteps - 1)
+      router.push("/");
   }
 
   return (
