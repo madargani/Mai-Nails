@@ -36,6 +36,8 @@ export default function Book() {
     <ThankYou getValues={getValues} key={4} />
   ]);
 
+  console.log(process.env.PRIVATE_KEY);
+
   const router = useRouter();
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
