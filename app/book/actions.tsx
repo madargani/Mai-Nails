@@ -45,4 +45,23 @@ export async function getAppts(date: string): Promise<string[]> {
   return available;
 }
 
-export async function addAppt(date: string, time: string): Promise<void> {}
+export async function addAppt(
+  name: string,
+  date: string,
+  time: string,
+  phone: string,
+  email: string
+): Promise<void> {
+  const sheets = getSheets();
+
+  const res = sheets.spreadsheets.values.append({
+    spreadsheetId: process.env.SHEET_ID,
+    range: "Appointments!B2:C",
+    valueInputOption: "USER_ENTERED",
+    requestBody: {
+      values: [
+        [name, date, time, phone, email]
+      ]
+    }
+  })
+}

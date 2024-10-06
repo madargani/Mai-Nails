@@ -12,7 +12,7 @@ export default function CustomerInfo({
       </p>
       <TextInput register={register} label="Name" />
       <TextInput register={register} label="Email" />
-      <TextInput register={register} label="Phone Number" />
+      <TextInput register={register} label="Phone" />
     </div>
   );
 }

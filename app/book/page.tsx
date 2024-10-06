@@ -7,6 +7,8 @@ import OptionStep from "./steps/optionStep";
 import ThankYou from "./steps/thankYou";
 
 import useMultiStepForm from "./useMultiStepForm";
+import { addAppt } from "./actions";
+
 import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import { useRouter } from "next/navigation";
@@ -36,6 +38,10 @@ export default function Book() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     nextStep();
+    if (step === totalSteps - 2) {
+      const { Name, Date, Time, Email, Phone } = getValues();
+      addAppt(Name, Date, Time, Email, Phone)
+    }
     if (step === totalSteps - 1)
       router.push("/");
   }
