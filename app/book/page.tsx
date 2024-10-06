@@ -10,7 +10,7 @@ import useMultiStepForm from "./useMultiStepForm";
 import { addAppt } from "./actions";
 
 import { useForm } from "react-hook-form";
-import { DevTool } from "@hookform/devtools";
+// import { DevTool } from "@hookform/devtools";
 import { useRouter } from "next/navigation";
 
 export default function Book() {
@@ -77,7 +77,7 @@ export default function Book() {
           {step == totalSteps - 1 && "Back Home"}
         </button>
       </form>
-      <DevTool control={control} />
+      {/* <DevTool control={control} /> */}
     </body>
   );
 }
