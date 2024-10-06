@@ -26,6 +26,7 @@ function TextInput({
 }) {
   return (
     <input
+      required
       className="
       w-full border-2 border-neutral-300 rounded-full
       text-2xl placeholder-neutral-300 text-neutral-500 px-4 py-1"

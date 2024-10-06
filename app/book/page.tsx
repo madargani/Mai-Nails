@@ -8,9 +8,10 @@ import { useForm } from "react-hook-form";
 import { DevTool } from "@hookform/devtools";
 import DateTime from "./steps/dateTime";
 import OptionStep from "./steps/optionStep";
+import ThankYou from "./steps/thankYou";
 
 export default function Book() {
-  const { register, setValue, control } = useForm();
+  const { register, setValue, getValues, control } = useForm();
 
   const { totalSteps, step, page, nextStep, prevStep } = useMultiStepForm([
     <CustomerInfo register={register} />,
@@ -27,7 +28,13 @@ export default function Book() {
       options={["Almond", "Oval", "Rounded", "Square", "Stiletto"]}
       name="Shape"
     />,
+    <ThankYou getValues={getValues}/>
   ]);
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    nextStep();
+  }
 
   return (
     <body
@@ -35,22 +42,29 @@ export default function Book() {
       bg-gradient-to-t from-green-400 to-pink-400
       h-screen flex items-center justify-center"
     >
-      <form className="w-80 h-fit bg-white rounded-[3rem] p-8">
+      <form 
+        className="w-80 h-fit bg-white rounded-[3rem] p-8"
+        onSubmit={handleSubmit}
+      >
         <BackButton
           prevStep={prevStep}
-          visibility={step === 0 ? "invisible" : ""}
+          visibility={step === 0 || step === totalSteps - 1 ? "invisible" : ""}
         />
-        <ProgressBar totalSteps={totalSteps} currentStep={step + 1} />
+        <ProgressBar
+          totalSteps={totalSteps - 1}
+          currentStep={step + 1} 
+          visibility={step === totalSteps - 1 ? "hidden" : ""} 
+        />
         {page}
         <button
           className={`
-          ${step !== totalSteps - 1 ? "bg-pink-400" : "bg-green-400"}
+          ${step !== totalSteps - 2 ? "bg-pink-400" : "bg-green-400"}
           w-64 rounded-full p-2 
           text-3xl text-white font-bold`}
-          type="button"
-          onClick={nextStep}
         >
-          {step !== totalSteps - 1 ? "Next" : "Submit"}
+          {step < totalSteps - 2 && "Next"}
+          {step == totalSteps - 2 && "Submit"}
+          {step == totalSteps - 1 && "Back Home"}
         </button>
       </form>
       <DevTool control={control} />

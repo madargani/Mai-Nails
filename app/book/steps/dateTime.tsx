@@ -35,6 +35,7 @@ export default function DateTime({
         When is a good time for us to meet?
       </p>
       <input
+        required
         id="Date"
         className="
         w-full border-2 border-neutral-300 rounded-full
@@ -82,6 +83,7 @@ function RadioButton({
   return (
     <div className="flex justify-center">
       <input
+        required
         {...register(name)}
         className="hidden peer"
         type="radio"

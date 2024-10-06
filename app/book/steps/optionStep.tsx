@@ -38,6 +38,7 @@ function RadioButton({
   return (
     <div className="flex justify-center">
       <input
+        required
         {...register(name)}
         className="hidden peer"
         type="radio"
