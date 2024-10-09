@@ -14,8 +14,6 @@ import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 
 export default function Book() {
-  console.log(process.env.CLIENT_EMAIL);
-
   const { register, setValue, getValues } = useForm();
 
   const { totalSteps, step, page, nextStep, prevStep } = useMultiStepForm([

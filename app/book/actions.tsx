@@ -14,6 +14,8 @@ function getSheets() {
 }
 
 export async function getAppts(date: string): Promise<string[]> {
+  console.log(process.env.CLIENT_EMAIL)
+
   if (date === "") return [];
   if (new Date(date) < new Date()) return [];
 
