@@ -2,6 +2,9 @@
 
 A website for a nail salon business. It is fairly simple only containing a landing page and a page for booking appointments.
 
+![image](https://github.com/user-attachments/assets/d549d71b-5bed-436a-80f1-af0d0c26660e)
+![image](https://github.com/user-attachments/assets/ba94713d-3f9f-4dce-ae74-f454fe396578)
+
 ## Installation
 
 1. Clone the repository
